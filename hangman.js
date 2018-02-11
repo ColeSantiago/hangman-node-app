@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const word = require('./word');
-const checkLetter = require('./letter');
 
 console.log('');
 console.log('');
@@ -12,37 +11,32 @@ console.log('');
 console.log('');
 
 
-const game = inquirer
+inquirer
+	.prompt([
+		{
+			type: 'confirm',
+			message: 'Start?',
+			name: 'confirm',
+			default: true
+		},
+	])
+	.then(function(userResponse) {
+		if (userResponse.confirm) {
+			word();
+
+			inquirer
 				.prompt([
 					{
-						type: 'confirm',
-						message: 'Start?',
-						name: 'confirm',
-						default: true
-
-					},
-				])
-				.then(function(userResponse) {
-					if (userResponse.confirm) {
-						word();
-
-						inquirer
-							.prompt([
-								{
-									type: 'input',
-									message: 'Guess a letter!',
-									name: 'input'
-
-								},
-							])
-							.then(function(letter) {
-								checkLetter(letter.input);
-								console.log(`Remaining Guesses: ${remainingGuesses}`);
-								console.log(`Current Word: ${underscoreArray}`);
-
-							})
-					} else {
-						console.log('ok then');
+						type: 'input',
+						message: 'Guess a letter!',
+						name: 'input'
 					}
-				});
-
+				])
+				.then(function(userGuess) {
+					const newGuess = new word;
+					newGuess.checkLetter(userGuess.input);
+				})
+		} else {
+			console.log('ok then');
+		}
+	});
