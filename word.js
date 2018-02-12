@@ -8,8 +8,6 @@ const word = function() {
 		let currentWord = possibleWords[Math.floor(Math.random() * possibleWords.length)];
 
 		return currentWord;
-
-		// console.log(currentWord);
 	}
 }
 
