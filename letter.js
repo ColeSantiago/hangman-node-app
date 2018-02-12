@@ -1,9 +1,11 @@
 const word = require('./word');
 
 const letter = function() {
+	// amount of guesses
+	this.remainingGuesses = 15;
 
+	// taking the choosen word and creating an array of underscores for it
 	this.underScoreArray = [];
-	this.remainingGuesses = 10;
 	this.wrongLetters = [];
 	const generateWord = new word;
 	const currentWord = generateWord.generateWord();
@@ -13,15 +15,16 @@ const letter = function() {
 		this.underScoreArray.push("_");
 	}
 	
-
 	console.log(currentWord);
 
+	// function to display the game to the command line
 	this.showGame = function() {
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
 		console.log('')
 		console.log(`Current Word: ${this.underScoreArray}`);
 	};
 
+	// function to check if the letter pressed is in the choosen word
 	this.checkLetter = function(userGuess) {
 
 		this.userGuess = userGuess.input;
@@ -48,6 +51,7 @@ const letter = function() {
 		}	
 	}
 
+	// function to check if the user won or lost
 	function checkWin() {
 		if (this.underscoreArray === this.currentWordLetters) {
 			console.log('************************');
