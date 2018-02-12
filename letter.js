@@ -18,7 +18,6 @@ const letter = function() {
 
 	this.showGame = function() {
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
-		console.log(`Used Letters: ${this.wrongLetters}`);
 		console.log('')
 		console.log(`Current Word: ${this.underScoreArray}`);
 	};
@@ -30,23 +29,39 @@ const letter = function() {
 		if (this.currentWordLetters.indexOf(this.userGuess) === -1) {
 				
 			this.remainingGuesses--;
-				// checkWin();
+			checkWin();
 					
 		} else {
 
 			for (let i = 0; i < this.currentWordLetters.length; i++) {
 
 				if (this.userGuess === this.currentWordLetters[i]) {
-						this.underScoreArray[i] = this.userGuess;
-						this.remainingGuesses--;
-						// checkWin();		
+					this.underScoreArray[i] = this.userGuess;
+					this.remainingGuesses--;
+					checkWin();		
 				}
 
 				if (this.wrongLetters[i] == this.userGuess) {
-						this.remainingGuesses + 0;
+					this.remainingGuesses + 0;
 				}
 			}
 		}	
+	}
+
+	function checkWin() {
+		if (this.underscoreArray === this.currentWordLetters) {
+			console.log('************************');
+			console.log('*******You Won!!!*******');
+			console.log('************************');
+			console.log('');
+
+		} if (this.remainingGuesses === 0) {
+			console.log('-------------------------')
+			console.log('-You ran out of guesses!-')
+			console.log('-------------------------')
+			console.log('');
+			
+		}
 	}
 
 }
