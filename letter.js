@@ -20,54 +20,62 @@ const letter = function() {
 	// function to display the game to the command line
 	this.showGame = function() {
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
+		console.log(`Used Letters: ${this.wrongLetters}`);
 		console.log('')
 		console.log(`Current Word: ${this.underScoreArray}`);
 	};
 
-	// function to check if the letter pressed is in the choosen word
+	// function to check if the letter pressed is in the choosen word, if it's worng, or if it's already been pressed
 	this.checkLetter = function(userGuess) {
 
 		this.userGuess = userGuess.input;
 
-		if (this.currentWordLetters.indexOf(this.userGuess) === -1) {
-				
-			this.remainingGuesses--;
-			checkWin();
+		if (this.currentWordLetters.indexOf(this.userGuess) === -1 && this.wrongLetters.indexOf(this.userGuess) === -1) {
+				this.wrongLetters.push(this.userGuess);
+				this.remainingGuesses--;
+				this.checkWin();	
 					
 		} else {
 
 			for (let i = 0; i < this.currentWordLetters.length; i++) {
 
-				if (this.userGuess === this.currentWordLetters[i]) {
+				if (this.userGuess === this.currentWordLetters[i] && this.underScoreArray.indexOf(this.userGuess) === -1) {
 					this.underScoreArray[i] = this.userGuess;
 					this.remainingGuesses--;
-					checkWin();		
+					this.checkWin();		
 				}
 
 				if (this.wrongLetters[i] == this.userGuess) {
-					this.remainingGuesses + 0;
+						this.remainingGuesses + 0;
 				}
-			}
+
+			}	
 		}	
 	}
 
 	// function to check if the user won or lost
-	function checkWin() {
-		if (this.underscoreArray === this.currentWordLetters) {
+	this.checkWin = function() {
+		if (this.underScoreArray.indexOf('_') === -1) {
 			console.log('************************');
 			console.log('*******You Won!!!*******');
 			console.log('************************');
 			console.log('');
+			this.gameOver();
 
 		} if (this.remainingGuesses === 0) {
 			console.log('-------------------------')
 			console.log('-You ran out of guesses!-')
 			console.log('-------------------------')
 			console.log('');
+			this.gameOver();
 			
 		}
 	}
 
+	this.gameOver = function() {
+		console.log("Here's another word!");
+		return true;
+	}
 }
 
 module.exports = letter;

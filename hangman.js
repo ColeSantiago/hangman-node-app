@@ -72,6 +72,11 @@ function startGameConfirm() {
 		})
 }
 
+if (Letter.gameOver()) {
+	console.log('this is working')
+	startGameConfirm();
+}
+
 
 
 startGameConfirm();
