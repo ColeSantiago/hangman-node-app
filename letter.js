@@ -1,8 +1,11 @@
 const word = require('./word');
 
-function checkLetters (letter) {
-		
-	
+const letter = function() {
+
+	const generateWord = new word;
+	const currentWord = generateWord.generateWord();
+
+	console.log(currentWord);
 }
 
-module.exports = checkLetters;
+letter();
