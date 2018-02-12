@@ -2,49 +2,50 @@ const word = require('./word');
 
 const letter = function() {
 
-	const underScoreArray = [];
+	this.underScoreArray = [];
 	this.remainingGuesses = 10;
-	const wrongLetters = [];
+	this.wrongLetters = [];
 	const generateWord = new word;
 	const currentWord = generateWord.generateWord();
-	let currentWordLetters = currentWord.split("");
-
-	this.getWord = function() {
-		for (let i = 0; i < currentWordLetters.length; i++) {
-			underScoreArray.push("_");
-		}
+	this.currentWordLetters = currentWord.split("");
+		
+	for (let i = 0; i < this.currentWordLetters.length; i++) {
+		this.underScoreArray.push("_");
 	}
+	
 
-	console.log(currentWordLetters);
+	console.log(currentWord);
 
 	this.showGame = function() {
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
 		console.log(`Used Letters: ${this.wrongLetters}`);
 		console.log('')
-		console.log(`Current Word: ${underScoreArray}`);
+		console.log(`Current Word: ${this.underScoreArray}`);
 	};
 
-	this.checkLetter = function(theWord, userGuess) {
+	this.checkLetter = function(userGuess) {
 
-		if (currentWordLetters.indexOf(userGuess) === -1 && wrongLetters.indexOf(userGuess) === -1) {
-				wrongLetters.push(userGuess);
-				this.remainingGuesses--;
+		this.userGuess = userGuess.input;
+
+		if (this.currentWordLetters.indexOf(this.userGuess) === -1) {
+				
+			this.remainingGuesses--;
 				// checkWin();
 					
-			} else {
+		} else {
 
-				for (let i = 0; i < currentWordLetters.length; i++) {
+			for (let i = 0; i < this.currentWordLetters.length; i++) {
 
-					if (userGuess === currentWordLetters[i] && underscoreArray.indexOf(userGuess) === -1) {
-						underscoreArray[i] = userGuess;
+				if (this.userGuess === this.currentWordLetters[i]) {
+						this.underScoreArray[i] = this.userGuess;
 						this.remainingGuesses--;
 						// checkWin();		
-					}
-
-					if (wrongLetters[i] == userGuess) {
-						this.remainingGuesses + 0;
-					}
 				}
+
+				if (this.wrongLetters[i] == this.userGuess) {
+						this.remainingGuesses + 0;
+				}
+			}
 		}	
 	}
 

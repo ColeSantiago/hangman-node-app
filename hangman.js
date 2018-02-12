@@ -24,16 +24,32 @@ function startGameConfirm() {
 		])
 		.then(function(userResponse) {
 			if (userResponse.confirm) {
-
+				
 				function startGame() {
-					let theWord = Letter.getWord();
-
+					
 					Letter.showGame();
 
-					Letter.checkLetter(theWord);	
+					userGuess();	
 				}
 
 				startGame();
+				
+				function userGuess() {
+					inquirer
+						.prompt([
+							{
+								type: 'input',
+								message: 'Guess a letter!',
+								name: 'input'
+
+							},
+						])
+						.then(function(userInput) {
+							Letter.checkLetter(userInput);
+							startGame();
+
+						})
+				}
 
 
 			} else {
