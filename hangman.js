@@ -56,16 +56,23 @@ function startGameConfirm() {
 								}
 							},
 						])
-						// if check win is false, keep playing. When it is true, ask to start the game over
 						.then(function(userInput) {
-							if (!Letter.checkWin()) {
+							
 								Letter.checkLetter(userInput);
 								Letter.showGame();
+						})
+						// if check win is false, keep playing. When it is true, ask to start the game over
+						.then(function() {
+							if (!Letter.checkWin()) {
 								userGuess();
-							} if(Letter.checkWin()){
-								startGameConfirm();
 							}
-						}) 
+							if(Letter.checkWin()){
+								console.log("---------------------------Press 'y' to play again!");
+								startGameConfirm();
+								
+							}
+
+						})	
 				}
 
 			// if the user does not want to play

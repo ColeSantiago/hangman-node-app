@@ -6,8 +6,6 @@ const letter = function() {
 
 	this.underScoreArray = [];
 	this.wrongLetters = [];
-	this.wins = 0;
-	this.losses = 0;
 
 	// taking the choosen word and creating an array of underscores for it
 	this.chooseWord = function() {
@@ -25,12 +23,9 @@ const letter = function() {
 	// function to display the game to the command line
 	this.showGame = function() {
 		console.log('')
-		// console.log(`Wins: ${this.wins}`);
-		// console.log(`Losses: ${this.losses}`);
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
 		console.log(`Used Letters: ${this.wrongLetters}`);
 		console.log('')
-		console.log(`Current Word: ${this.currentWordLetters}`);
 		console.log(`Current Word: ${this.underScoreArray}`);
 		console.log('')
 
@@ -66,22 +61,13 @@ const letter = function() {
 
 	// function to check if the user won or lost
 	this.checkWin = function() {
-		if (this.underScoreArray.indexOf('_')  < 0) {
-			// this.wins++
-			console.log('')
-			console.log('************************');
-			console.log('*******You Won!!!*******');
-			console.log('************************');
-			console.log('');
+		if (this.underScoreArray.indexOf('_') === -1) {
 			this.remainingGuesses = 10;
 			this.underScoreArray = [];
 			this.wrongLetters = [];
-			console.log("---------------------------Press 'y' to play again!");
 			return true;
-			
 
-		} if (this.remainingGuesses === 0) {
-			// this.losses++;
+		} else if (this.remainingGuesses === 0) {
 			console.log('');
 			console.log('-------------------------');
 			console.log('-You ran out of guesses!-');
@@ -90,9 +76,7 @@ const letter = function() {
 			this.remainingGuesses = 10;
 			this.underScoreArray = [];
 			this.wrongLetters = [];
-			console.log("---------------------------Press 'y' to play again!");
-			return true;
-					
+			return true;				
 		} 
 	}
 }
