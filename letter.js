@@ -7,7 +7,7 @@ const letter = function() {
 	this.underScoreArray = [];
 	this.wrongLetters = [];
 
-	// taking the choosen word and creating an array of underscores for it
+	// taking the chosen word and creating an array of underscores for it
 	this.chooseWord = function() {
 		const generateWord = new word;
 		const currentWord = generateWord.generateWord();
@@ -31,7 +31,7 @@ const letter = function() {
 
 	};
 
-	// function to check if the letter pressed is in the choosen word, if it's worng, or if it's already been pressed
+	// function to check if the letter pressed is in the choosen word, if it's wrong, or if it's already been pressed
 	this.checkLetter = function(userGuess) {
 
 		this.userGuess = userGuess.input;
@@ -58,9 +58,10 @@ const letter = function() {
 			}	
 		}	
 	}
+}
 
 	// function to check if the user won or lost
-	this.checkWin = function() {
+	letter.prototype.checkWin = function() {
 		if (this.underScoreArray.indexOf('_') === -1) {
 			this.remainingGuesses = 10;
 			this.underScoreArray = [];
@@ -79,6 +80,6 @@ const letter = function() {
 			return true;				
 		} 
 	}
-}
+
 
 module.exports = letter;
