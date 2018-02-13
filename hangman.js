@@ -6,8 +6,8 @@ const Letter = new letter;
 console.log('');
 console.log('');
 console.log('----------------------------------');
-console.log('-------------Hangman--------------');
-console.log('-------Harry Potter Edition-------');
+console.log('----------Harry Potter------------');
+console.log('------------Hang Man--------------');
 console.log('----------------------------------');
 console.log('');
 console.log('');
@@ -56,13 +56,13 @@ function startGameConfirm() {
 								}
 							},
 						])
-						// if check win is false, keep playing. When it is true, start the game over
+						// if check win is false, keep playing. When it is true, ask to start the game over
 						.then(function(userInput) {
 							if (!Letter.checkWin()) {
 								Letter.checkLetter(userInput);
 								Letter.showGame();
 								userGuess();
-							} else {
+							} if(Letter.checkWin()){
 								startGameConfirm();
 							}
 						}) 

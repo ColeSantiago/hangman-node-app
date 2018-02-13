@@ -2,7 +2,7 @@ const word = require('./word');
 
 const letter = function() {
 	// amount of guesses
-	this.remainingGuesses = 15;
+	this.remainingGuesses = 10;
 
 	this.underScoreArray = [];
 	this.wrongLetters = [];
@@ -19,19 +19,21 @@ const letter = function() {
 			this.underScoreArray.push("_");
 		}
 		
-		console.log(currentWord);
+		// console.log(currentWord);
 	}
 
 	// function to display the game to the command line
 	this.showGame = function() {
 		console.log('')
-		console.log(`Wins: ${this.wins}`);
-		console.log(`Losses: ${this.losses}`);
+		// console.log(`Wins: ${this.wins}`);
+		// console.log(`Losses: ${this.losses}`);
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
 		console.log(`Used Letters: ${this.wrongLetters}`);
 		console.log('')
+		console.log(`Current Word: ${this.currentWordLetters}`);
 		console.log(`Current Word: ${this.underScoreArray}`);
 		console.log('')
+
 	};
 
 	// function to check if the letter pressed is in the choosen word, if it's worng, or if it's already been pressed
@@ -64,14 +66,14 @@ const letter = function() {
 
 	// function to check if the user won or lost
 	this.checkWin = function() {
-		if (this.underScoreArray.indexOf('_') === -1) {
-			this.wins++
+		if (this.underScoreArray.indexOf('_')  < 0) {
+			// this.wins++
 			console.log('')
 			console.log('************************');
 			console.log('*******You Won!!!*******');
 			console.log('************************');
 			console.log('');
-			this.remainingGuesses = 15;
+			this.remainingGuesses = 10;
 			this.underScoreArray = [];
 			this.wrongLetters = [];
 			console.log("---------------------------Press 'y' to play again!");
@@ -79,13 +81,13 @@ const letter = function() {
 			
 
 		} if (this.remainingGuesses === 0) {
-			this.losses++
-			console.log('')
-			console.log('-------------------------')
-			console.log('-You ran out of guesses!-')
-			console.log('-------------------------')
+			// this.losses++;
 			console.log('');
-			this.remainingGuesses = 15;
+			console.log('-------------------------');
+			console.log('-You ran out of guesses!-');
+			console.log('-------------------------');
+			console.log('');
+			this.remainingGuesses = 10;
 			this.underScoreArray = [];
 			this.wrongLetters = [];
 			console.log("---------------------------Press 'y' to play again!");
