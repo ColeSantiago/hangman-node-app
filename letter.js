@@ -4,25 +4,34 @@ const letter = function() {
 	// amount of guesses
 	this.remainingGuesses = 15;
 
-	// taking the choosen word and creating an array of underscores for it
 	this.underScoreArray = [];
 	this.wrongLetters = [];
-	const generateWord = new word;
-	const currentWord = generateWord.generateWord();
-	this.currentWordLetters = currentWord.split("");
+	this.wins = 0;
+	this.losses = 0;
+
+	// taking the choosen word and creating an array of underscores for it
+	this.chooseWord = function() {
+		const generateWord = new word;
+		const currentWord = generateWord.generateWord();
+		this.currentWordLetters = currentWord.split("");
+			
+		for (let i = 0; i < this.currentWordLetters.length; i++) {
+			this.underScoreArray.push("_");
+		}
 		
-	for (let i = 0; i < this.currentWordLetters.length; i++) {
-		this.underScoreArray.push("_");
+		console.log(currentWord);
 	}
-	
-	console.log(currentWord);
 
 	// function to display the game to the command line
 	this.showGame = function() {
+		console.log('')
+		console.log(`Wins: ${this.wins}`);
+		console.log(`Losses: ${this.losses}`);
 		console.log(`Remaining Guesses: ${this.remainingGuesses}`);
 		console.log(`Used Letters: ${this.wrongLetters}`);
 		console.log('')
 		console.log(`Current Word: ${this.underScoreArray}`);
+		console.log('')
 	};
 
 	// function to check if the letter pressed is in the choosen word, if it's worng, or if it's already been pressed
@@ -56,25 +65,33 @@ const letter = function() {
 	// function to check if the user won or lost
 	this.checkWin = function() {
 		if (this.underScoreArray.indexOf('_') === -1) {
+			this.wins++
+			console.log('')
 			console.log('************************');
 			console.log('*******You Won!!!*******');
 			console.log('************************');
 			console.log('');
-			this.gameOver();
+			this.remainingGuesses = 15;
+			this.underScoreArray = [];
+			this.wrongLetters = [];
+			console.log("---------------------------Press 'y' to play again!");
+			return true;
+			
 
 		} if (this.remainingGuesses === 0) {
+			this.losses++
+			console.log('')
 			console.log('-------------------------')
 			console.log('-You ran out of guesses!-')
 			console.log('-------------------------')
 			console.log('');
-			this.gameOver();
-			
-		}
-	}
-
-	this.gameOver = function() {
-		console.log("Here's another word!");
-		return true;
+			this.remainingGuesses = 15;
+			this.underScoreArray = [];
+			this.wrongLetters = [];
+			console.log("---------------------------Press 'y' to play again!");
+			return true;
+					
+		} 
 	}
 }
 
