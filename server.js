@@ -1,6 +1,5 @@
 const letter = require('./letter');
 const inquirer = require('inquirer');
-
 const Letter = new letter;
 
 console.log('');
@@ -32,7 +31,6 @@ function startGameConfirm() {
 					Letter.showGame();
 					userGuess();	
 				}
-
 				startGame();
 				// takes the user's guess, makes sure its a letter and lowercase, and sends it to the check letter function
 				function userGuess() {
@@ -71,10 +69,8 @@ function startGameConfirm() {
 								startGameConfirm();
 								
 							}
-
 						})	
 				}
-
 			// if the user does not want to play
 			} else {
 				console.log('oh ok');
